@@ -2,7 +2,7 @@
 
 Solana Based, NFT Minting App 
 
-[See it Live!](xxx)
+[See it Live!](https://w3-solana-nfcraft.vercel.app/)
 
 # Install
 

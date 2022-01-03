@@ -1,20 +1,5 @@
 import { Connection, clusterApiUrl } from '@solana/web3.js';
-import { Program, Provider, web3 } from '@project-serum/anchor';
-import filekp from './keypair.json';
-
-
-
-let envkp;
-if (process.env.REACT_APP_KEYPAIR !== undefined) {
-  envkp = JSON.parse(process.env.REACT_APP_KEYPAIR);
-}
-const kp = envkp || filekp;
-
-// eslint-disable-next-line no-underscore-dangle
-const arr = Object.values(kp._keypair.secretKey);
-const secret = new Uint8Array(arr);
-const baseAccount = web3.Keypair.fromSecretKey(secret);
-
+import { Program, Provider } from '@project-serum/anchor';
 
 // Set our network to devnet.
 const ENDPOINT = clusterApiUrl(process.env.REACT_APP_SOLANA_NETWORK);
@@ -70,9 +55,5 @@ export default class ChainClient {
   
     // Create a program that you can call
     return new Program(idl, programAddress, this.provider);
-  }
-
-  async refreshAccount() {
-    this.account = this.program.account.baseAccount.fetch(baseAccount.publicKey).account;
   }
 }
